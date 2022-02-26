@@ -2,22 +2,17 @@
 
   export const load = async ({ fetch, params }) => {
 
-    return {
-      
-      props: {
-
-        post: await (async url =>
+    const post = await (async url =>
             
-            await (async promise =>
-              await promise.json ()
-            ) (await fetch (url))
+        await (async promise =>
+          await promise.json ()
+        ) (await fetch (url))
 
-          ) (
-            `https://jsonplaceholder.typicode.com/posts/${ params.id }`
-          )
+      ) (`https://jsonplaceholder.typicode.com/posts/${ params.id }`) 
 
-      }
 
+    return {
+      props: { post }
     }
 
   }
