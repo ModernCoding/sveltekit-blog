@@ -26,11 +26,15 @@
 
 <h1>Posts</h1>
 
-{#each posts as post}
+{ #each posts as post }
 
-  <article>
-    <h2>#{ post.id }: { post.title }</h2>
-    <p>{ post.body }</p>
-  </article>
+  <a sveltekit:prefetch href={`/blog/${ post.id }`}>
 
-{/each}
+    <article>
+      <h2>#{ post.id }: { post.title }</h2>
+      <p>{ post.body }</p>
+    </article>
+
+  </a>
+
+{ /each }

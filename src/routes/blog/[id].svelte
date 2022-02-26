@@ -1,0 +1,35 @@
+<script type="text/javascript" context="module">
+
+  export const load = async ({ fetch, params }) => {
+
+    return {
+      
+      props: {
+
+        post: await (async url =>
+            
+            await (async promise =>
+              await promise.json ()
+            ) (await fetch (url))
+
+          ) (
+            `https://jsonplaceholder.typicode.com/posts/${ params.id }`
+          )
+
+      }
+
+    }
+
+  }
+
+</script>
+
+
+<script type="text/javascript">
+  export let post = {}
+</script>
+
+
+<h1>#{ post.id }: { post.title }</h1>
+<p>{ post.body }</p>
+<a href="/">All posts</a>
