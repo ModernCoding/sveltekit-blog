@@ -32,4 +32,4 @@
 
 <h1>#{ post.id }: { post.title }</h1>
 <p>{ post.body }</p>
-<a href="/">All posts</a>
+<a sveltekit:prefetch href="/">All posts</a>
