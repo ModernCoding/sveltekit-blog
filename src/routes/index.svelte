@@ -1,11 +1,15 @@
 <script type="text/javascript" context="module">
 
-  export const load = ({ fetch }) => {
+  export const load = async ({ fetch }) => {
 
     return {
       
       props: {
-        message: "ok"
+
+        posts: await (async promise =>
+            await promise.json ()
+          ) (await fetch ('https://jsonplaceholder.typicode.com/posts'))
+
       }
 
     }
@@ -16,12 +20,17 @@
 
 
 <script type="text/javascript">
-  export let message
+  export let posts
 </script>
 
 
-<h1>Posts - {message}</h1>
+<h1>Posts</h1>
 
-<p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et tortor at mauris bibendum sagittis. Phasellus pulvinar quam tempor laoreet luctus. Pellentesque non sodales tortor. Nullam non turpis purus. Duis est tortor, vestibulum eget turpis id, euismod semper metus. Integer egestas vehicula massa ut porttitor. Vivamus in purus felis. Nulla condimentum dui vitae dolor viverra, vel hendrerit lacus ultrices. Quisque volutpat elit erat, et laoreet velit porttitor at. Sed efficitur sapien eu ipsum dignissim semper. Vestibulum pharetra, dui quis mattis ullamcorper, quam lectus hendrerit ligula, a vestibulum urna nisi eu nulla. Morbi non imperdiet nibh. Etiam dignissim vel nulla eget sagittis. Fusce et erat non orci faucibus mattis. Duis gravida consequat orci, non efficitur neque dictum nec. Pellentesque dui nulla, consequat quis mauris mattis, congue tempus sem.
-</p>
+{#each posts as post}
+
+  <article>
+    <h2>#{ post.id }: { post.title }</h2>
+    <p>{ post.body }</p>
+  </article>
+
+{/each}
